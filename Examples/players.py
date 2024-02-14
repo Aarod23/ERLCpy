@@ -1,7 +1,7 @@
 # pip install ERLC
 
 import asyncio
-from ERLCf.erlc import ErlcClient
+from ERLC.erlc import ErlcClient
 
 async def main():
     erlc_client = ErlcClient()
