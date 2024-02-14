@@ -8,8 +8,10 @@ class ErlcClient:
         self.connected = False
         self.global_key = None
         self.server_key = None
+        self.server = None 
+        self.client = None
 
-    async def connect(self, server_key: str, global_key: str):
+    async def config(self, server_key: str, global_key: str):
         if self.connected:
             return logging.error("You are already connected to ERLC.")
 
@@ -18,8 +20,12 @@ class ErlcClient:
 
         self.server_key = server_key
         self.global_key = global_key
-        self.connected = True
 
+        self.client = await self.fetch_async_client()
+
+        self.server = Server(async_client=self.client)
+
+        self.connected = True
         logging.info("Your API keys are now ready to be used.")
 
     async def disconnect(self):
@@ -32,11 +38,22 @@ class ErlcClient:
         self.connected = False
         self.server_key = None
         self.global_key = None
+        self.server = None
+        self.client = None
 
     async def reconnect(self):
         logging.info("Reconnecting to ERLC...")
         await self.disconnect()
         await self.connect(self.server_key, self.global_key)
-        
-    server = Server()
     
+    
+    async def fetch_async_client(self):
+        return AsyncClient(server_key=self.server_key, global_key=self.global_key)
+
+class AsyncClient:
+    def __init__(self, server_key, global_key):
+        self.server_key = server_key
+        self.global_key = global_key
+
+
+client = ErlcClient()
