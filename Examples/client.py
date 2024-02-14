@@ -1,7 +1,11 @@
 # pip install ERLC
 
 import asyncio
+import sys
+
+sys.path.append('../')
 from ERLC.erlc import ErlcClient
+
 
 async def main():
     erlc_client = ErlcClient()
