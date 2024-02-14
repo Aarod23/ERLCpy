@@ -1,3 +1,3 @@
-from ERLC.Classes.client import ErlcClient
+from .client import ErlcClient
 
 client = ErlcClient()
