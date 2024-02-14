@@ -1,18 +1,18 @@
 import httpx
 import asyncio
 import logging
-from .Functions.Server.getPlayers import players
-from .Functions.Server.getStatus import status
-from .Functions.Server.getBans import bans
-from .Functions.Server.getJoins import joinlogs
-from .Functions.Server.getQueue import Queue
-from .Functions.Server.runCmd import run_command
-from .Functions.Server.getKills import killlogs
-from .Functions.Server.getCmds import commands
+from  .Server.getPlayers import players
+from .Server.getStatus import status
+from .Server.getBans import bans
+from .Server.getJoins import joinlogs
+from .Server.getQueue import Queue
+from .Server.runCmd import run_command
+from .Server.getKills import killlogs
+from .Server.getCmds import commands
 
 
 
-class Server:
+class ServerClient:
     def __init__(self, async_client):
         self.async_client = async_client
         
