@@ -4,7 +4,7 @@ import asyncio
 import sys
 
 sys.path.append('../')
-from ERLC.erlc import ErlcClient
+from ERLCf.erlc import ErlcClient
 
 
 async def main():

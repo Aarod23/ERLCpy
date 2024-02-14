@@ -2,6 +2,7 @@ import asyncio
 import logging
 from .server import ServerClient as Server
 import httpx
+from .requests import request
 
 class ErlcClient:
     def __init__(self):
@@ -11,12 +12,12 @@ class ErlcClient:
         self.server = None 
         self.client = None
 
-    async def config(self, server_key: str, global_key: str):
+    async def config(self, server_key: str, global_key: str = None):
         if self.connected:
-            return logging.error("You are already connected to ERLC.")
+            return print("You are already connected to ERLC.")
 
         if global_key is None:
-            logging.info("You have not submitted a global API key.")
+            print("You have not submitted a global API key.")
 
         self.server_key = server_key
         self.global_key = global_key
@@ -24,9 +25,16 @@ class ErlcClient:
         self.client = await self.fetch_async_client()
 
         self.server = Server(async_client=self.client)
+        headers = {"Authorization": global_key,"Server-Key": server_key}
+        response = await request(headers=headers, endpoint="/server")
+        
+        if response is not None and response.status_code == 200:
+            print("Succesfully connected to ERLC.")
+            self.connected = True
+        if response is not None and response.status_code == 404 or not 200:
+            print("Failed to connect to ERLC.")
+            self.connected = False
 
-        self.connected = True
-        logging.info("Your API keys are now ready to be used.")
 
     async def disconnect(self):
         if not self.connected:
