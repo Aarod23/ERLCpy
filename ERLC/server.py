@@ -1,14 +1,14 @@
 import httpx
 import asyncio
 import logging
-from ERLC.Functions.Server.getPlayers import players
-from ERLC.Functions.Server.getStatus import status
-from ERLC.Functions.Server.getBans import bans
-from ERLC.Functions.Server.getJoins import joinlogs
-from ERLC.Functions.Server.getQueue import Queue
-from ERLC.Functions.Server.runCmd import run_command
-from ERLC.Functions.Server.getKills import killlogs
-from ERLC.Functions.Server.getCmds import commands
+from .Functions.Server.getPlayers import players
+from .Functions.Server.getStatus import status
+from .Functions.Server.getBans import bans
+from .Functions.Server.getJoins import joinlogs
+from .Functions.Server.getQueue import Queue
+from .Functions.Server.runCmd import run_command
+from .Functions.Server.getKills import killlogs
+from .Functions.Server.getCmds import commands
 
 
 

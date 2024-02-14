@@ -1,6 +1,6 @@
 import asyncio
 import logging
-from ERLC.server import Server
+from .server import Server
 import httpx
 
 class ErlcClient:
