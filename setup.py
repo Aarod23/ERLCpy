@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ERLC",                 
-    version="1.2.9",                     
+    version="1.3",                     
     author="mark.api",                    
     description="An API wrapper for the ERLC API",
     long_description=long_description,      
