@@ -1,7 +1,7 @@
 import httpx
 import asyncio
 import logging
-from  .Server.getPlayers import players
+from .Server.getPlayers import players
 from .Server.getStatus import status
 from .Server.getBans import bans
 from .Server.getJoins import joinlogs
