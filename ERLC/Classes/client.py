@@ -26,15 +26,19 @@ class ErlcClient:
 
         self.server = Server(async_client=self.client)
         headers = {"Authorization": global_key,"Server-Key": server_key}
-        response = await request(headers=headers, endpoint="/server")
         
-        if response is not None and response.status_code == 200:
-            print("Succesfully connected to ERLC.")
-            self.connected = True
-        if response is not None and response.status_code == 404 or not 200:
-            print("Failed to connect to ERLC.")
-            self.connected = False
-
+        try: 
+            response = await request(headers=headers, endpoint="/server")
+            if response.status_code == 200:
+                self.connected = True
+                print("Succesfully connected to ERLC")
+            if response.status_code != 200:
+                print(f"Failed to connect to ERLC | Status Code {response.status_code}")
+        
+        except Exception as e:
+            print("An error has occured when connnecting to ERLC.")
+            print(e)
+            
 
     async def disconnect(self):
         if not self.connected:
