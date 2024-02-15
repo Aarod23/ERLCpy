@@ -1,7 +1,7 @@
 import httpx
 import asyncio
 import logging
-from ...requests import request
+from .requests import request
 
 async def bans(self, async_client):
     """Fetches the ERLC server Ban Logs

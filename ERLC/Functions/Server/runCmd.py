@@ -1,7 +1,7 @@
 import httpx
 import asyncio
 import logging
-from ..requests import request
+from .requests import request
 
 async def run_command(self, async_client,*, command: str):
     """Runs a ERLC server command as "Virtual Server Management"

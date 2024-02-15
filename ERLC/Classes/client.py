@@ -2,7 +2,7 @@ import asyncio
 import logging
 from .server import ServerClient as Server
 import httpx
-from ..requests import request
+from ..Functions.Server.requests import request
 
 class ErlcClient:
     def __init__(self):
