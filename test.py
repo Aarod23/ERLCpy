@@ -1,9 +1,9 @@
 import asyncio
 
-import ERLC  # Import the ERLC package
+import ERLC.Functions as Functions  # Import the ERLC package
 
 async def main():
-    erlc_client = ERLC.ErlcClient()
+    erlc_client = Functions.ErlcClient()
 
     server_key = 'your_server_key'
     global_key = 'your_global_key'

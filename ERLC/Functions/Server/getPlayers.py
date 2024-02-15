@@ -1,10 +1,10 @@
 import httpx
 import asyncio
 import logging
-from ..requests import request
+from ...requests import request
 
-async def commands(self, async_client):
-    """Fetches the ERLC server Commands Logs
+async def players(self, async_client):
+    """Fetches the ERLC server players
                 
     Parameters:
         None
@@ -13,7 +13,7 @@ async def commands(self, async_client):
         JSON Data
     """
     headers = {"Authorization": async_client.global_key,"Server-Key": async_client.server_key}
-    response = await request(headers=headers, endpoint="/server/commandlogs")
+    response = await request(headers=headers, endpoint="/server/players")
 
     if response:
         return response.json()

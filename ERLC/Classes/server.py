@@ -1,14 +1,14 @@
 import httpx
 import asyncio
 import logging
-from .Server.getPlayers import players
-from .Server.getStatus import status
-from .Server.getBans import bans
-from .Server.getJoins import joinlogs
-from .Server.getQueue import Queue
-from .Server.runCmd import run_command
-from .Server.getKills import killlogs
-from .Server.getCmds import commands
+from ..Functions.Server.getPlayers import players
+from ..Functions.Server.getStatus import status
+from ..Functions.Server.getBans import bans
+from ..Functions.Server.getJoins import joinlogs
+from ..Functions.Server.getQueue import Queue
+from ..Functions.Server.runCmd import run_command
+from ..Functions.Server.getKills import killlogs
+from ..Functions.Server.getCmds import commands
 
 
 
@@ -23,9 +23,10 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await players(self=self, async_client=self.async_client)
+        data = await players(self=self, async_client=self.async_client)
+        return data
     
     async def status(self):
         """Fetches the ERLC server Status
@@ -34,9 +35,10 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await status(self=self, async_client=self.async_client)
+        data = await status(self=self, async_client=self.async_client)
+        return data
         
     async def bans(self):
         """Fetches the ERLC server Ban Logs
@@ -45,10 +47,11 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await bans(self=self, async_client=self.async_client)
-        
+        data = await bans(self=self, async_client=self.async_client)
+        return data               
+    
     async def joinlogs(self):
         """Fetches the ERLC server Join Logs
                 
@@ -56,9 +59,11 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await joinlogs(self=self, async_client=self.async_client)
+        data = await joinlogs(self=self, async_client=self.async_client)
+        return data
+
     
     async def killlogs(self):
         """Fetches the ERLC server Kill Logs
@@ -67,9 +72,10 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await killlogs(self=self, async_client=self.async_client)
+        data = await killlogs(self=self, async_client=self.async_client)
+        return data
     
     async def queue(self):
         """Fetches the ERLC server Queue
@@ -78,9 +84,10 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await Queue(self=self, async_client=self.async_client)
+        data = await Queue(self=self, async_client=self.async_client)
+        return data
         
     async def run_command(self, command: str):
         """Runs a command in the ERLC server
@@ -89,9 +96,10 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await run_command(self=self, async_client=self.async_client, command=command)
+        data = await run_command(self=self, async_client=self.async_client, command=command)
+        return data
     
     async def commandlogs(self):
         """Fetches the ERLC server Command Logs
@@ -100,9 +108,10 @@ class ServerClient:
             None
                 
         Returns:
-            Tuple (status_code, data)
+            JSON Data
             """
-        status_code, data = await commands(self=self, async_client=self.async_client)
+        data = await commands(self=self, async_client=self.async_client)
+        return data
         
         
 
