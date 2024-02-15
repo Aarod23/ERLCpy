@@ -14,7 +14,7 @@ async def bans(self, async_client):
     
     """
     headers = {"Authorization": async_client.global_key,"Server-Key": async_client.server_key}
-    response = await request(headers=headers, endpoint="/server/bans")
+    response = await request(headers=headers, endpoint="server/bans")
 
     if response:
         return response.json()

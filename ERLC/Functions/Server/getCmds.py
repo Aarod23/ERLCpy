@@ -13,7 +13,7 @@ async def commands(self, async_client):
         JSON Data
     """
     headers = {"Authorization": async_client.global_key,"Server-Key": async_client.server_key}
-    response = await request(headers=headers, endpoint="/server/commandlogs")
+    response = await request(headers=headers, endpoint="server/commandlogs")
 
     if response:
         return response.json()

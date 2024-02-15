@@ -28,7 +28,7 @@ class ErlcClient:
         headers = {"Authorization": global_key,"Server-Key": server_key}
         
         try: 
-            response = await request(headers=headers, endpoint="/server")
+            response = await request(headers=headers, endpoint="server")
             if response.status_code == 200:
                 self.connected = True
                 print("Succesfully connected to ERLC")
