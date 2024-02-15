@@ -17,5 +17,5 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],                                     
     python_requires='>=3.6',               
-    install_requires=["httpx","logging","asyncio"]                  
+    install_requires=["httpx","asyncio"]                  
 )
