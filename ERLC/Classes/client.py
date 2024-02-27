@@ -8,24 +8,20 @@ class ErlcClient:
     def __init__(self):
         self.connected = False
         self.global_key = None
-        self.server_key = None
         self.server = None 
         self.client = None
 
-    async def config(self, server_key: str, global_key: str = None):
+    async def config(self, server_key: str):
         if self.connected:
             return print("You are already connected to ERLC.")
 
-        if global_key is None:
-            print("You have not submitted a global API key.")
 
         self.server_key = server_key
-        self.global_key = global_key
 
         self.client = await self.fetch_async_client()
 
         self.server = Server(async_client=self.client)
-        headers = {"Authorization": global_key,"Server-Key": server_key}
+        headers = {"Server-Key": server_key}
         
         try: 
             response = await request(headers=headers, endpoint="server")
@@ -49,23 +45,21 @@ class ErlcClient:
 
         self.connected = False
         self.server_key = None
-        self.global_key = None
         self.server = None
         self.client = None
 
     async def reconnect(self):
         logging.info("Reconnecting to ERLC...")
         await self.disconnect()
-        await self.connect(self.server_key, self.global_key)
+        await self.config(self.server_key)
     
     
     async def fetch_async_client(self):
-        return AsyncClient(server_key=self.server_key, global_key=self.global_key)
+        return AsyncClient(server_key=self.server_key)
 
 class AsyncClient:
-    def __init__(self, server_key, global_key):
+    def __init__(self, server_key):
         self.server_key = server_key
-        self.global_key = global_key
 
 
 client = ErlcClient()
